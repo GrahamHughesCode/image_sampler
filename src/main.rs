@@ -29,12 +29,10 @@ fn main() {
         if x == x_size
         {
             output.push_str(&format!("{}\n", "\u{0020}".on_truecolor(c[0], c[1], c[2])));
-            // println!("{}\n", "\u{0020}".on_truecolor(c[0], c[1], c[2]));
         }
         else
         {
             output.push_str(&format!("{}", "\u{0020}".on_truecolor(c[0], c[1], c[2])));
-            // print!("{}", "\u{0020}".on_truecolor(c[0], c[1], c[2]));
         }
     }
     println!("{}", output);
