@@ -9,4 +9,5 @@ edition = "2018"
 [dependencies]
 colored = "2"
 image = "0.23"
+regex = "1"
 
