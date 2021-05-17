@@ -31,7 +31,7 @@ fn main() {
             },
             _ =>
             {
-                //checking for manual pixel set [number of x pixels]x[number of y pixels]
+                //checking for manual pixel set [number of x pixels]x[number of y pixels] with preserved value aspect ratio 
                 let re = Regex::new(r"([0-9]+x[0-9]+)").unwrap();
                 if re.is_match(args[2].as_str())
                 {
