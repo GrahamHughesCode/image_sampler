@@ -1,3 +1,4 @@
+use std::process;
 use colored::*;
 use image::*;
 use image::imageops::FilterType;
@@ -7,6 +8,12 @@ use regex::Regex;
 fn main() {
     let args: Vec<String> = env::args().collect();
     let file = args[1].clone();
+    if file == "--help" { help_and_exit(false)};
+    if std::path::Path::new(&file).exists() == false 
+    {
+        println!("{}", "file does not exist".red());
+        process::exit(1);
+    }
     let img = image::open(file).unwrap();
     let mut x_pixels:u32 = 50;
     let mut y_pixels:u32 = 50;
@@ -41,7 +48,7 @@ fn main() {
                 }
                 else
                 {
-                    println!("Not a vaild size. Defaulting to small.");
+                    help_and_exit(true);
                 }
 
             }
@@ -64,4 +71,15 @@ fn main() {
         }
     }
     println!("{}", output);
+}
+
+fn help_and_exit(error: bool)
+{
+    if error == true 
+    {
+        println!("{}", "Incorrect usage".red());
+    }
+    println!("Usage: image_sampler [--help] [file] [small] [medium] [large] [(number)x(number)]");
+    println!("Previews images using true color.");
+    process::exit(1);    
 }
