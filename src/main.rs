@@ -6,6 +6,7 @@ use std::env;
 use regex::Regex;
 
 fn main() {
+
     let args: Vec<String> = env::args().collect();
     let file = args[1].clone();
     if file == "--help" { help_and_exit(false)};
@@ -14,9 +15,11 @@ fn main() {
         println!("{}", "file does not exist".red());
         process::exit(1);
     }
+
     let img = image::open(file).unwrap();
     let mut x_pixels:u32 = 50;
     let mut y_pixels:u32 = 50;
+
     if args.len() >= 3
     {
         match args[2].as_str()
@@ -55,9 +58,13 @@ fn main() {
         } 
         
     }
+
+    // scaling the image
     let scaled = img.resize(x_pixels, y_pixels, FilterType::Nearest);
     let img = scaled; 
     let x_size = img.dimensions().0 - 1;
+    
+    // outputting the image
     let mut output = String::new();
     for pixel in img.pixels() {
         let (x, _y, c) = pixel;
