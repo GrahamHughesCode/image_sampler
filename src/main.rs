@@ -22,7 +22,7 @@ fn main() {
 
     if args.len() >= 3
     {
-        match args[2].as_str()
+        match args[2].to_lowercase().as_str()
         {
             "small" =>
             {
