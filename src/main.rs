@@ -62,7 +62,13 @@ fn main() {
     // scaling the image
     let scaled = img.resize(x_pixels, y_pixels, FilterType::Nearest);
     // scaling to accommodate stretching effect
-    let scaled = scaled.resize_exact(x_pixels, y_pixels/2, FilterType::Nearest);
+    if args.len() >= 4
+    {
+        if args[4] == "rectpixel"
+        {
+            let _scaled = scaled.resize_exact(x_pixels, y_pixels/2, FilterType::Nearest);
+        }
+    }
     let img = scaled; 
     let x_size = img.dimensions().0 - 1;
     
